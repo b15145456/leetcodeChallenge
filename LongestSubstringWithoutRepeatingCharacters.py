@@ -31,27 +31,23 @@ for i in substrList:
         pass
 print(findMax(newList))
 
-
 """""""""""Solution 2"""""""""""""""
 
-# 1.檢查dict是否存在當前字符，如果存在更新pointer位置
-# 2.計算max
-# 3.更新dict
-# https://www.youtube.com/watch?v=ZlCxw1VUYj0&t=316s&ab_channel=XiangyuCai
-def lengthOfLongestSubstring(s):
-    point = 0
-    dic={}
-    max = 0
-    for i in range(len(s)):
-        if (s[i] in dic):
-            dic[s[i]] = i
-            point = dic[s[i]]-1
-        else:
-            dic[s[i]] = i
-            if ((i - point + 1)>max):
-                max = i - point + 1
-    return max
-
-s = "abcabcbb"
-print(lengthOfLongestSubstring(s))
+def lengthOfLongestSubstring2(s):
+      point =0
+      index = 0
+      d={}
+      ans = 0
+      while index < len(s):
+         if s[index] not in d or point>d[s[index]]:
+            ans = max(ans,(index-point+1))
+            d[s[index]] = index
+         else:
+            point = d[s[index]]+1
+            ans = max(ans,(index-point+1))
+            index-=1
+         #print(ans)
+         index+=1
+      return ans
+print(lengthOfLongestSubstring("ABCABCBB"))
 
